@@ -1,0 +1,36 @@
+{
+    "name": "darwin-sdk",
+    "version": "0.0.1",
+    "description": "NodeJS SDK of Darwin Conversational AI Platform.",
+    "author": "magicbowen <e.wangbo@gmail.com>",
+    "license": "MIT",
+    "homepage": "https://github.com/MagicBowen/darwin-sdk",
+    "main": "darwin.js",
+    "scripts": {
+        "test": "mocha"
+    },
+    "engines": {
+        "node": ">=8.11.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MagicBowen/darwin-sdk"
+    },
+    "bugs": {
+        "url": "https://github.com/MagicBowen/darwin-sdk/issues"
+    },
+    "dependencies": {
+        "request": "^2.87.0",
+        "debug": "^3.1.0"
+    },
+    "devDependencies": {
+        "mocha": "^5.2.0",
+        "deep-equal": "^1.0.1",
+        "should": "^13.2.1"
+    },
+    "keywords": [
+        "darwin",
+        "chatbot",
+        "bot framework"
+    ]
+}
