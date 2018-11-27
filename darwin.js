@@ -1,0 +1,1 @@
+module.exports.Chatbot = require('./src/chatbot')

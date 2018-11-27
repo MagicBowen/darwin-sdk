@@ -2,7 +2,7 @@ const postJson = require('./post-json');
 const debug   = require('debug')('darwin:Chatbot');
 
 class Chatbot {
-    constructor(agent, uri) {
+    constructor(uri, agent) {
         this.agent = agent;
         this.uri = uri;
     }
