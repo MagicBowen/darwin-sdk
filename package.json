@@ -5,7 +5,7 @@
     "author": "magicbowen <e.wangbo@gmail.com>",
     "license": "MIT",
     "homepage": "https://github.com/MagicBowen/darwin-sdk",
-    "main": "darwin.js",
+    "main": "index.js",
     "scripts": {
         "test": "mocha"
     },

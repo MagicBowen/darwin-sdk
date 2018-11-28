@@ -1,47 +1,16 @@
 const postJson = require('./post-json');
-const debug   = require('debug')('darwin:Chatbot');
+const Response = require('./response');
+const debug  = require('debug')('darwin:Chatbot');
 
 class Chatbot {
     constructor(uri, agent) {
-        this.agent = agent;
-        this.uri = uri;
-    }
-    
-    async replyToText(userId, text, userContext) {
-        let data = { query   : { query : text, confidence : 1.0 }, 
-                     session : userId, 
-                     agent   : this.agent,
-                     userContext : userContext };
-
-        let response = await postJson(this.uri, data);
-        return this.formatResponse(response);
+        this.agent = agent
+        this.uri = uri
     }
 
-    async replyToEvent(userId, eventType, userContext, params) {
-        let data = { event   : { name : eventType, content : params },
-                     session : userId, 
-                     agent   : this.agent,
-                     userContext : userContext};
-
-        let response = await postJson(this.uri, data);
-        return this.formatResponse(response);
-    }
-
-    formatResponse(response) {
-        debug(`chatbot reply ${JSON.stringify(response)}`);
-        if (response.reply) {
-            let result = this.concatReplies(response.reply);
-            response.reply = result
-        }
-        return response;
-    }
-
-    concatReplies(replies) {
-        var result = '';
-        for(var i = 0; i < replies.length; i++) {
-            result += replies[i];
-        }
-        return result;
+    async dispose(request) {
+        request.setAgent(this.agent)
+        return new Response(await postJson(this.uri, request.body))
     }
 }
 

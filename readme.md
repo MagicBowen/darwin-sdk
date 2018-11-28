@@ -2,12 +2,11 @@
 
 [NodeJS SDK of Darwin Conversational AI Platform](http://www.xiaoda.ai).
 
-
 ## server
 
 - PROTOCOL : HTTPS
 - METHOD : POST
-- URL : contact with darwin@xiaoda.ai for URL and tocken
+- URL : contact with [darwin@xiaoda.ai](mailto:darwin@xiaoda.ai) to apply URL and tocken
 
 ## request
 
