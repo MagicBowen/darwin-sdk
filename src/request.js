@@ -97,6 +97,12 @@ class RecordFinishEvent extends SkillEvent {
     }
 }
 
+class RecordFailEvent extends SkillEvent {
+    constructor(userId) {
+        super(userId, "record-fail")
+    }
+}
+
 module.exports.Query = Query
 module.exports.Event = Event
 module.exports.OpenSkillEvent = OpenSkillEvent
@@ -104,3 +110,4 @@ module.exports.QuitSkillEvent = QuitSkillEvent
 module.exports.NoResponseEvent = NoResponseEvent
 module.exports.PlayFinishEvent = PlayFinishEvent
 module.exports.RecordFinishEvent = RecordFinishEvent
+module.exports.RecordFailEvent = RecordFailEvent
