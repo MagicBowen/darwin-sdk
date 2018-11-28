@@ -215,7 +215,7 @@ Initialize new Event.
 | userId | `String` | user id |
 | eventType | `String` | type of event |
 
-**除了专有event(OpenSkillEvent,QuitSkillEvent,NoResponseEvent,PlayFinishEvent,RecordFinishEvent)的event type已指定外，其它event type需自定义。不同type的event可以指定携带不同的参数，见addContent**
+除了专有event(OpenSkillEvent,QuitSkillEvent,NoResponseEvent,PlayFinishEvent,RecordFinishEvent)的event type已指定外，其它event type需自定义。不同type的event可以指定携带不同的参数，见`addContent`；
 
 ##### addContent
 
