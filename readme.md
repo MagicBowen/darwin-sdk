@@ -1,6 +1,6 @@
-# Darwin NodeJs SDK
+# API of Darwin Conversational AI Platform
 
-[NodeJS SDK of Darwin Conversational AI Platform](http://www.xiaoda.ai).
+[API of Darwin Conversational AI Platform](http://www.xiaoda.ai).
 
 ## access service
 
