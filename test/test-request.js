@@ -8,10 +8,6 @@ const NoResponseEvent = require('../').NoResponseEvent
 
 describe('test request', function () {
   describe('#test query', function () {
-    it('should not be event', function () {
-        const query = new Query('user1', 'hello')
-        query.isEvent().should.be.exactly(false);
-    });
     it('should construct query correct', function () {
         const query = new Query('user1', 'hello')
         const expect = { query   : { query : 'hello', confidence : 1.0 }, session : 'user1'}
@@ -25,13 +21,9 @@ describe('test request', function () {
     });
   });
   describe('#test event', function () {
-    it('should be event', function () {
-        const event = new Event('user1', 'placeholder')
-        event.isEvent().should.be.exactly(true);
-    });
     it('should construct event correct', function () {
         const event = new Event('user1', 'playFinish')
-        event.setContent({audio : 'audio1.mp3'}).setAgent('luckNumber')
+        event.addContent('audio', 'audio1.mp3').setAgent('luckNumber')
         const expect = { event   : { name : 'playFinish', content : {audio : 'audio1.mp3'} }, session : 'user1', agent : 'luckNumber'}
         equal(event.body, expect).should.be.exactly(true);
     });

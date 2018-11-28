@@ -34,7 +34,7 @@ describe('test response', function () {
                 {"type" : "text", "reply" : "welcome"},
                 {"type" : "audio", "url" : "https://www.xiaodamp.com/audio/1.mp3"},
                 {"type" : "start-record"},
-                {"type" : "play-record", "media" : "xxxxxxxx"},
+                {"type" : "play-record", "media-id" : "xxxxxxxx"},
             ]
         })
         rsp.hasInstructOfQuit().should.be.exactly(true)

@@ -9,10 +9,6 @@ class Request {
         return this._body
     }
 
-    isEvent() {
-        return false
-    }
-
     setAgent(agent) {
         this._body.agent = agent
         return this
@@ -37,12 +33,9 @@ class Event extends Request {
         this._body.event = {name : eventName}
     }
 
-    isEvent() {
-        return true
-    }
-
-    setContent(content) {
-        this._body.event.content = content
+    addContent(key, value) {
+        if (!this._body.event.content) this._body.event.content = {}
+        this._body.event.content[key] = value
         return this
     }
 }
@@ -90,8 +83,24 @@ class NoResponseEvent extends SkillEvent {
     }
 }
 
+class PlayFinishEvent extends SkillEvent {
+    constructor(userId, url) {
+        super(userId, "play-finish")
+        this.addContent('url', url)
+    }
+}
+
+class RecordFinishEvent extends SkillEvent {
+    constructor(userId, mediaId) {
+        super(userId, "record-finish")
+        this.addContent('media_id', mediaId)
+    }
+}
+
 module.exports.Query = Query
 module.exports.Event = Event
 module.exports.OpenSkillEvent = OpenSkillEvent
 module.exports.QuitSkillEvent = QuitSkillEvent
 module.exports.NoResponseEvent = NoResponseEvent
+module.exports.PlayFinishEvent = PlayFinishEvent
+module.exports.RecordFinishEvent = RecordFinishEvent
