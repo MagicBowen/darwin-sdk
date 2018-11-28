@@ -23,6 +23,11 @@ class Response {
         return this._body.intents.map((item) => {return item.name})
     }
 
+    hasTts() {
+        if (!this._body.data) return false
+        return this._body.data.filter((data) => {return data.type === 'tts'}).length > 0        
+    }
+
     hasInstructOfQuit() {
         if (!this._body.data) return false
         return this._body.data.filter((data) => {return data.type === 'quit-skill'}).length > 0
