@@ -1,6 +1,6 @@
 {
     "name": "darwin-sdk",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "NodeJS SDK of Darwin Conversational AI Platform.",
     "author": "magicbowen <e.wangbo@gmail.com>",
     "license": "MIT",

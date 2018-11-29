@@ -25,12 +25,16 @@ class Request {
         return this
     }
 
+    setAccessTocken(tocken) {
+        return this.addUserContext('accessTocken', tocken)
+    }
+
     setSource(source) {
         return this.addUserContext('source', source)
     }
 
     setDisplay(enable) {
-        return this.addUserContext('support_display', enable)
+        return this.addUserContext('supportDisplay', enable)
     }    
 }
 
@@ -95,7 +99,7 @@ class PlayFinishEvent extends SkillEvent {
 class RecordFinishEvent extends SkillEvent {
     constructor(userId, mediaId) {
         super(userId, "record-finish")
-        this.addContent('media_id', mediaId)
+        this.addContent('mediaId', mediaId)
     }
 }
 

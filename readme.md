@@ -23,7 +23,7 @@ request分为`query`和`event`两类。
     "query"   : { "query": "你好啊", 
                   "confidence":1.0
                 }, 
-    "userContext"  : { "source" : "xiaoai" },
+    "userContext"  : { "source" : "xiaoai", "accessTocken" : "xxxxxx"},
     "session" : "userId", 
     "agent"   : "indentifyCode"
 } 
@@ -32,6 +32,7 @@ request分为`query`和`event`两类。
 - `query.query` : 用户的对话内容，ASR的结果，为utf-8格式的字符串；
 - `query.confidence` : 如果用户的对话内容是经过ASR处理后得到，该项为ASR的信心概率。浮点数，范围`0 ~ 1.0`。如果无法获得则默认填写`1.0`；
 - `userContext.source` : 用于标识用户来源（例如小爱音箱填写“xiaoai”）。需要提前发邮件到[api_issue@xiaoda.ai](mailto:api_issue@xiaoda.ai)进行协商申请；
+- `userContext.accessTocken` : 非必须字段。如果用户使用了oauth2鉴权，那么这里填写用户对应的access tocken值。具体参见oauth2标准协议。
 - `session` : session id，用于区分不同session。此处暂时填写用户的ID（不超过32位的字符串，只可包含字母、数字和下滑线并以字母开头）；
 - `agent`   : 接收对话的skill agent的名字，协商取值；例如幸运数字技能填写“indentifyCode”；
 
@@ -42,7 +43,7 @@ request分为`query`和`event`两类。
     "event"   : { "name"     : "open-skill-indentifyCode", 
                   "content"  : {}
                 },
-    "userContext"  : { "source" : "xiaoai" },       
+    "userContext"  : { "source" : "xiaoai", "accessTocken" : "xxxxxx"},       
     "session" : "userId", 
     "agent"   : "indentifyCode"
 }
@@ -53,11 +54,12 @@ request分为`query`和`event`两类。
     - `quit-skill-indentifyCode` : 技能退出，规则为`"quit-skill-" + 技能名`；
     - `no-response-indentifyCode` : 用户在技能内一定时间内没有响应，规则为`"no-response-" + 技能名`；
     - `play-finish-indentifyCode` : 媒体资源播放结束，规则为`"play-finish-" + 技能名`；该事件需要在`content`中携带媒体资源的url：`content : {url : "https://www.xiaodamp.com/audio/5.mp3"}`
-    - `record-finish-indentifyCode` : 客户端录音结束，规则为`"record-finish-" + 技能名`；该事件需要在`content`中携带录音资源的media id：`content : {media_id ："xxxxxxxxxxx"}`
+    - `record-finish-indentifyCode` : 客户端录音结束，规则为`"record-finish-" + 技能名`；该事件需要在`content`中携带录音资源的media id：`content : {mediaId ："xxxxxxxxxxx"}`
     - `record-fail-indentifyCode` : 客户端录音结束，规则为`"record-fail-" + 技能名`；
     - 其它事件名及参数，可以自定义；
 - `event.content` : 用于事件携带参数。具体格式由不同的事件决定。
 - `userContext.source` : 用于标识用户来源（例如小爱音箱填写“xiaoai”）。需要提前发邮件到[api_issue@xiaoda.ai](mailto:api_issue@xiaoda.ai)进行协商申请；
+- `userContext.accessTocken` : 非必须字段。如果用户使用了oauth2鉴权，那么这里填写用户对应的access tocken值。具体参见oauth2标准协议。
 - `session` : session id，用于区分不同session。此处暂时填写用户的ID（不超过32位的字符串，只可包含字母、数字和下滑线并以字母开头）；
 - `agent`   : 接收对话的skill agent的名字，协商取值；例如幸运数字填写“indentifyCode”；
 
@@ -89,7 +91,7 @@ Robot返回的消息格式如下：
     - `{"type" : "tts", "text" : "听完音频后请回答"}` : 指示播放对应文字的tts；
     - `{"type" : "play-audio", "url" : "http://www.xiaodamp.cn/audio/5.mp3"}` : 指示播放指定的音频文件；
     - `{"type" : "start-record"}` : 指示开始录音；
-    - `{"type" : "play-record"，"media_id" : "xxxxxxxxxx"}` : 指示播放录音，`media_id`标识录音文件资源id；
+    - `{"type" : "play-record"，"mediaId" : "xxxxxxxxxx"}` : 指示播放录音，`mediaId`标识录音文件资源id；
 - **注意**  : 如果`response`里面包含了`reply`字段，则`reply`优先于`data`。也就是客户端侧优先播放`response.reply`，然后再按照`response.data`里面的指令顺序播放。
 
 ```js
@@ -200,7 +202,14 @@ await chatbot.dispose(new Query('test-darwin-user-1', '你好'))
 
 ### request
 
-Request分为以下具体的类型:
+Request分为Query和Event，Event又具体有OpenSkillEvent,QuitSkillEvent,NoResponseEvent,PlayFinishEvent,RecordFinishEvent；
+所有的Request共享了以下接口：
+
+| function | description |
+| --- | --- |
+| `setAccessTocken(tocken)` | 设置access tocken, 具体对应`userContext.accessTocken`字段 |
+| `setSource(source)` | 指示客户端source值, 具体对应`userContext.source`字段 |
+| `setDisplay(enable)` | 指示客户端是否支持屏显，具体对应`userContext.supportDisplay`字段 |
 
 #### Query
 
@@ -405,7 +414,7 @@ if (rsp.hasInstructOfQuit()) {
 - `{"type" : "tts", "text" : "听完音频后请回答"}` : 指示播放对应文字的tts；
 - `{"type" : "play-audio", "url" : "http://www.xiaodamp.cn/audio/5.mp3"}` : 指示播放指定的音频文件；
 - `{"type" : "start-record"}` : 指示开始录音；
-- `{"type" : "play-record"，"media_id" : "xxxxxxxxxx"}` : 指示播放录音，`media_id`标识录音文件资源id；
+- `{"type" : "play-record"，"mediaId" : "xxxxxxxxxx"}` : 指示播放录音，`mediaId`标识录音文件资源id；
 
 ## 其它
 
