@@ -130,10 +130,18 @@ const Chatbot = require('darwin-sdk').Chatbot;
 const Query = require('darwin-sdk').Query;
 const Response = require('darwin-sdk').Response;
 
-// prepare config.json for chatbot_url and agent name
+
+/********************************************************
+ * prepare config.json for chatbot_url, agent and source
+ * {
+ *     "chatbot_url" : "https://xiaodamp.com/api/chatbot/",
+ *     "agent"  : "indentifyCode",
+ *     "source" : "xiaoai"
+ * }
+********************************************************/
 const config = require('./config')
 
-const chatbot = new Chatbot(config.chatbot_url, config.agent)
+const chatbot = new Chatbot(config.chatbot_url, config.agent, config.source)
 const rsp = await chatbot.dispose(new Query('test-darwin-user-1', '你好'))
 console.log(rsp.getReply())
 ```
@@ -152,14 +160,15 @@ const Chatbot = require('darwin-sdk').Chatbot
 
 Initialize new chatbot.
 
-`const chatbot = new Chatbot(url, agent)`
+`const chatbot = new Chatbot(url, agent, source)`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | url | `String` | chatbot service url |
 | agent | `String` | chatbot agent name |
+| source | `String` | optional: client source |
 
-url和agent需要发邮件到[api_issue@xiaoda.ai](mailto:api_issue@xiaoda.ai)进行申请协商；
+url和agent和source需要发邮件到[api_issue@xiaoda.ai](mailto:api_issue@xiaoda.ai)进行申请协商；
 
 #### dispose
 

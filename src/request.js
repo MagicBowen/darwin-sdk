@@ -18,6 +18,20 @@ class Request {
         this._body.userContext = userContext
         return this
     }
+
+    addUserContext(key, value) {
+        if (! this._body.userContext) this._body.userContext = {}
+        this._body.userContext[key] = value
+        return this
+    }
+
+    setSource(source) {
+        return this.addUserContext('source', source)
+    }
+
+    setDisplay(enable) {
+        return this.addUserContext('support_display', enable)
+    }    
 }
 
 class Query extends Request {
@@ -49,18 +63,6 @@ class SkillEvent extends Event {
     setAgent(agent) {
         this._body.agent = agent
         this._body.event.name = this.eventType + '-' + agent
-        return this
-    }
-
-    setSource(source) {
-        if (! this._body.userContext) this._body.userContext = {}
-        this._body.userContext.source = source
-        return this
-    }
-
-    setDisplay(enable) {
-        if (! this._body.userContext) this._body.userContext = {}
-        this._body.userContext.support_display = enable
         return this
     }
 }
