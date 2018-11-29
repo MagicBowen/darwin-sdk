@@ -168,7 +168,17 @@ Initialize new chatbot.
 | agent | `String` | chatbot agent name |
 | source | `String` | optional: client source |
 
-url和agent和source需要发邮件到[api_issue@xiaoda.ai](mailto:api_issue@xiaoda.ai)进行申请协商；
+上面参数中：url是darwin平台的服务地址。目前需要发邮件到[api_issue@xiaoda.ai](mailto:api_issue@xiaoda.ai)进行申请获得；
+agent是对应的技能引擎的名称，已有技能需要发邮件到[api_issue@xiaoda.ai](mailto:api_issue@xiaoda.ai)进行获得；
+source指示了技能访问者的客户端来源，目前已支持如下客户端。其它新的接入端需要申请协商新的source值。
+
+| 音箱类型 | source |
+| --- | --- |
+| 小米智能音箱 | `xiaoai` |
+| 百度智能音箱 | `dueros` |
+| 叮咚智能音箱 | `dingdong` |
+| 华为智能音箱 | `huawei` |
+| 360智能音箱 | `360` |
 
 #### dispose
 
