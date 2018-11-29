@@ -30,19 +30,19 @@ describe('test request', function () {
     it('should construct open skill event correct', function () {
         const event = new OpenSkillEvent('user1')
         event.setAgent('luckNumber').setSource('xiaoai')
-        const expect = { event :  { name : 'open-skill-luckNumber'} , session : 'user1', agent : 'luckNumber', userContext : {source : 'xiaoai'}}
+        const expect = { event :  { name : 'open-skill'} , session : 'user1', agent : 'luckNumber', userContext : {source : 'xiaoai'}}
         equal(event.body, expect).should.be.exactly(true);
     });
     it('should construct quit skill event correct', function () {
         const event = new QuitSkillEvent('user1')
         event.setAgent('luckNumber')
-        const expect = { event :  { name : 'quit-skill-luckNumber'} , session : 'user1', agent : 'luckNumber'}
+        const expect = { event :  { name : 'quit-skill'} , session : 'user1', agent : 'luckNumber'}
         equal(event.body, expect).should.be.exactly(true);
     });
     it('should construct on response event correct', function () {
         const event = new NoResponseEvent('user1')
         event.setAgent('luckNumber')
-        const expect = { event :  { name : 'no-response-luckNumber'} , session : 'user1', agent : 'luckNumber'}
+        const expect = { event :  { name : 'no-response'} , session : 'user1', agent : 'luckNumber'}
         equal(event.body, expect).should.be.exactly(true);
     });
   });

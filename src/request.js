@@ -58,52 +58,39 @@ class Event extends Request {
     }
 }
 
-class SkillEvent extends Event {
-    constructor(userId, eventType) {
-        super(userId, eventType)
-        this.eventType = eventType
-    }
-
-    setAgent(agent) {
-        this._body.agent = agent
-        this._body.event.name = this.eventType + '-' + agent
-        return this
-    }
-}
-
-class OpenSkillEvent extends SkillEvent {
+class OpenSkillEvent extends Event {
     constructor(userId) {
         super(userId, "open-skill")
     }
 }
 
-class QuitSkillEvent extends SkillEvent {
+class QuitSkillEvent extends Event {
     constructor(userId) {
         super(userId, "quit-skill")
     }
 }
 
-class NoResponseEvent extends SkillEvent {
+class NoResponseEvent extends Event {
     constructor(userId) {
         super(userId, "no-response")
     }
 }
 
-class PlayFinishEvent extends SkillEvent {
+class PlayFinishEvent extends Event {
     constructor(userId, url) {
         super(userId, "play-finish")
         this.addContent('url', url)
     }
 }
 
-class RecordFinishEvent extends SkillEvent {
+class RecordFinishEvent extends Event {
     constructor(userId, mediaId) {
         super(userId, "record-finish")
         this.addContent('mediaId', mediaId)
     }
 }
 
-class RecordFailEvent extends SkillEvent {
+class RecordFailEvent extends Event {
     constructor(userId) {
         super(userId, "record-fail")
     }
