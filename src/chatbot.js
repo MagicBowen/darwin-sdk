@@ -14,7 +14,10 @@ class Chatbot {
         if (this.source) {
             request.setSource(this.source)
         }
-        return new Response(await postJson(this.uri, request.body))
+        debug(`Send to chatbot: ${JSON.stringify(request.body)}`)
+        const response = new Response(await postJson(this.uri, request.body))
+        debug(`Receive from chatbot: ${JSON.stringify(response.body)}`)
+        return response
     }
 }
 

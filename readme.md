@@ -408,4 +408,5 @@ if (rsp.hasInstructOfQuit()) {
 
 ## 其它
 
+如果运行时想打开sdk的debug打印，可以在启动时加上 `DEBUG=darwin:*`，例如`DEBUG=darwin:* node index.js`。
 有问题请提issue到[api_issue@xiaoda.ai](mailto:api_issue@xiaoda.ai)
