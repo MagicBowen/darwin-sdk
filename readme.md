@@ -187,11 +187,10 @@ source指示了技能访问者的客户端来源，目前已支持如下客户�
 
 dispose a request.
 
-`await chatbot.dispose(userId, request)`
+`await chatbot.dispose(request)`
 
 | Param | Type | Description |
 | --- | --- | --- |
-| userId | String | less than (or equal to) 32 bit |
 | request | Request's subclass | eg. Query、Event、OpenSkillEvent ... |
 
 ```js
