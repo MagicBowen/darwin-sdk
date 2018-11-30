@@ -12,14 +12,7 @@ class Response {
     }
 
     getReply() {
-        if (!this._body.reply || this._body.reply.length == 0) {
-            if (!this._body.data || this._body.data.length == 0) return ''
-            let result = ''
-            for (let instruct of this._body.data) {
-                if (instruct.type == 'text') result += instruct.reply
-            }
-            return result
-        }
+        if (!this._body.reply || this._body.reply.length == 0) return ''
         return this._body.reply.reduce((acc, item, _1, _2) => {return acc + item})
     }
 
