@@ -89,7 +89,7 @@ Robot返回的消息格式如下：
 - `reply`  : 数组；返回给用户的对话，可以一次回复多句。端侧根据需要可以将所有回复合并成后单句后播报给用户；
 - `data`   : 指令数组；目前支持如下指令：
     - `{"type" : "quit-skill"}` : 指示技能退出，关闭麦克风；
-    - `{"type" : "tts", "text" : "听完音频后请回答"}` : 指示播放对应文字的tts；
+    - `{"type" : "text", "reply" : "听完音频后请回答"}` : 指示播放对应文字的tts；
     - `{"type" : "play-audio", "url" : "http://www.xiaodamp.cn/audio/5.mp3"}` : 指示播放指定的音频文件；
     - `{"type" : "start-record"}` : 指示开始录音；
     - `{"type" : "play-record"，"mediaId" : "xxxxxxxxxx"}` : 指示播放录音，`mediaId`标识录音文件资源id；
@@ -110,7 +110,7 @@ Robot返回的消息格式如下：
     ],
     "data" : [
         {"type" : "audio", "url" : "http://www.xiaodamp.cn/audio/5.mp3"},
-        {"type" : "tts", "text" : "音乐播放完成，请说出对应的歌手吧"}
+        {"type" : "text", "reply" : "音乐播放完成，请说出对应的歌手吧"}
     ]
 }
 
@@ -412,7 +412,7 @@ if (rsp.hasInstructOfQuit()) {
 目前约定了如下格式的指令，其它的格式可协商定义。
 
 - `{"type" : "quit-skill"}` : 指示技能退出，关闭麦克风；
-- `{"type" : "tts", "text" : "听完音频后请回答"}` : 指示播放对应文字的tts；
+- `{"type" : "text", "reply" : "听完音频后请回答"}` : 指示播放对应文字的tts；
 - `{"type" : "play-audio", "url" : "http://www.xiaodamp.cn/audio/5.mp3"}` : 指示播放指定的音频文件；
 - `{"type" : "start-record"}` : 指示开始录音；
 - `{"type" : "play-record"，"mediaId" : "xxxxxxxxxx"}` : 指示播放录音，`mediaId`标识录音文件资源id；

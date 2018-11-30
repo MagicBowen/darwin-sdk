@@ -12,6 +12,7 @@ class Response {
     }
 
     getReply() {
+        if (!this._body.reply) return ''
         return this._body.reply.reduce((acc, item, _1, _2) => {return acc + item})
     }
 
@@ -25,7 +26,7 @@ class Response {
 
     hasTts() {
         if (!this._body.data) return false
-        return this._body.data.filter((data) => {return data.type === 'tts'}).length > 0        
+        return this._body.data.filter((data) => {return data.type === 'text'}).length > 0        
     }
 
     hasInstructOfQuit() {
