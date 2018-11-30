@@ -12,7 +12,7 @@ class Response {
     }
 
     getReply() {
-        if (!this._body.reply) return ''
+        if (!this._body.reply || this._body.reply.length == 0) return ''
         return this._body.reply.reduce((acc, item, _1, _2) => {return acc + item})
     }
 
