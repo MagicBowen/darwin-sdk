@@ -9,3 +9,4 @@ module.exports.QuitSkillEvent = require('./src/request').QuitSkillEvent
 module.exports.NoResponseEvent = require('./src/request').NoResponseEvent
 module.exports.PlayFinishEvent = require('./src/request').PlayFinishEvent
 module.exports.RecordFinishEvent = require('./src/request').RecordFinishEvent
+module.exports.RecordFailEvent = require('./src/request').RecordFailEvent

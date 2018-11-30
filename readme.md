@@ -55,7 +55,7 @@ request分为`query`和`event`两类。
     - `no-response` : 用户在技能内一定时间内没有响应；
     - `play-finish` : 媒体资源播放结束；该事件需要在`content`中携带媒体资源的url：`content : {url : "https://www.xiaodamp.com/audio/5.mp3"}`
     - `record-finish` : 客户端录音结束；该事件需要在`content`中携带录音资源的media id：`content : {mediaId ："xxxxxxxxxxx"}`
-    - `record-fail` : 客户端录音结束；
+    - `record-fail` : 客户端录音失败；
     - 其它事件名及参数，可以自定义；
 - `event.content` : 用于事件携带参数。具体格式由不同的事件决定。
 - `userContext.source` : 用于标识用户来源（例如小爱音箱填写“xiaoai”）。需要提前发邮件到[api_issue@xiaoda.ai](mailto:api_issue@xiaoda.ai)进行协商申请；
