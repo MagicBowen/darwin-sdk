@@ -54,7 +54,8 @@ request分为`query`和`event`两类。
     - `quit-skill` : 退出技能；
     - `no-response` : 用户在技能内一定时间内没有响应；
     - `play-finish` : 媒体资源播放结束；该事件需要在`content`中携带媒体资源的url：`content : {url : "https://www.xiaodamp.com/audio/5.mp3"}`
-    - `record-finish` : 客户端录音结束；该事件需要在`content`中携带录音资源的media id：`content : {mediaId ："xxxxxxxxxxx"}`
+    - `record-finish` : 客户端录音结束；该事件需要在`content`中携带录音资源的media id：`content : {mediaId ："record-file-id"}`;
+      另外，当录音中同时携带ASR结果的话(可选)，可以选择将ASR结果也携带上：`content : {mediaId ："record-file-id", asrText : "怎么录音"}`;
     - `record-fail` : 客户端录音失败；
     - 其它事件名及参数，可以自定义；
 - `event.content` : 用于事件携带参数。具体格式由不同的事件决定。
@@ -347,12 +348,13 @@ await chatbot.dispost(event)
 
 Initialize new RecordFinishEvent. Indicate record finished.
 
-`const event = new RecordFinishEvent(userId, mediaId)`
+`const event = new RecordFinishEvent(userId, mediaId, asrText)`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | userId | `String` | user id |
 | mediaId | `String` | record media id |
+| astText | `String` | optional, asr result or record audio |
 
 ```js
 const RecordFinishEvent = require('darwin-sdk').RecordFinishEvent

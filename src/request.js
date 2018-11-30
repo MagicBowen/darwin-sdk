@@ -84,9 +84,10 @@ class PlayFinishEvent extends Event {
 }
 
 class RecordFinishEvent extends Event {
-    constructor(userId, mediaId) {
+    constructor(userId, mediaId, asrText) {
         super(userId, "record-finish")
-        this.addContent('mediaId', mediaId)
+        if (mediaId) this.addContent('mediaId', mediaId)
+        if (asrText) this.addContent('asrText', asrText)
     }
 }
 
