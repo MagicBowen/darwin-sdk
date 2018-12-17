@@ -33,7 +33,7 @@ describe('test response', function () {
                 {"type" : "quit-skill"},
                 {"type" : "text", "reply" : "welcome"},
                 {"type" : "audio", "url" : "https://www.xiaodamp.com/audio/1.mp3"},
-                {"type" : "start-record"},
+                {"type" : "record"},
                 {"type" : "play-record", "media-id" : "xxxxxxxx"},
             ]
         })

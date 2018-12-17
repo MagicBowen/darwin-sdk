@@ -59,8 +59,11 @@ class Event extends Request {
 }
 
 class OpenSkillEvent extends Event {
-    constructor(userId) {
+    constructor(userId, sid) {
         super(userId, "open-skill")
+        if (sid) {
+            this.addContent('sid', sid)
+        }
     }
 }
 
